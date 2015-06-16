@@ -19,6 +19,8 @@ import DesiredOptions
                 '&sellerTypes=d' \
                 '&mod_bookmark_id=102332494&lastExec=1433529371000'
 """
+
+autotrader_feature_lookup = {'LeatherSeats': '1078', 'Sunroof': '1132'}
 # for debugging
 
 
@@ -65,7 +67,21 @@ def set_search_string(site, options):
             search_string += '&doorCodes=' + options.number_of_doors()
 
         # setting up Autotrader feature code options
-        if options.number_of_doors() is not None:
-            search_string += '&doorCodes=' + options.number_of_doors()
+        feature_list = options.features()
+        if feature_list.count > 0:
+            # Need to validate to make sure this is a usable color
+            features_string = ''
+            for index, feature in enumerate(feature_list):
+                if feature == feature_list[-1]:
+                    features_string += autotrader_feature_lookup[feature]
+                else:
+                    features_string += autotrader_feature_lookup[feature] + '%2C'
+            search_string += features_string
+
+        '&makeCode1=RAM' \
+                '&trim1=RM1500%7CSport' \
+                '&mmt=%5BRAM%5BRM1500%5BRM1500%7CSport%5D%5D%5B%5D%5D' \
+        #autotrader make code
+        
 
     print search_string

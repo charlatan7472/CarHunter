@@ -15,6 +15,7 @@ class DesiredOptions(object):
         self.listing_types = ["Used", "Certified"]
         self.min_year = "2012"
         self.max_year = "2015"
+        self.features = ["Leather Seats", "Quad Cab", "Sunroof"]
 
     def zipcode(self):
         return self.zip_code
@@ -55,4 +56,5 @@ class DesiredOptions(object):
     def max_year(self):
         return self.max_year
 
-
+    def features(self):
+        return self.features
